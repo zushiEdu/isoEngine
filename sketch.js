@@ -15,12 +15,6 @@ slider.oninput = function () {
   zoom = this.value;
 }
 
-function v3(x, y, z) {
-  this.x = x;
-  this.y = y;
-  this.z = z;
-}
-
 const tileWidth = 64;
 const tileHeight = 32;
 const tileAmount = 19;
@@ -117,14 +111,6 @@ function drawGrid(grid) {
   for (let y = 0; y < gridSize; y++) {
     for (let x = 0; x < gridSize; x++) {
       drawTile(grid[y][x], x, y);
-    }
-  }
-}
-
-function tileMap() {
-  for (var y = 0; y < gridSize; y++) {
-    for (var x = 0; x < gridSize; x++) {
-
     }
   }
 }
