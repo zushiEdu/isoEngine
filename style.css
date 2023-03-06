@@ -1,0 +1,31 @@
+div {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+body {
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background-color: #1b1b1b;
+}
+
+h1, p {
+    color: mintcream;
+    font-family: monospace;
+    margin-left: 20%;
+  }
+
+  p{
+    margin-top:0;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  canvas{
+    image-rendering: pixelated;
+    border-radius: 15px;
+  }
