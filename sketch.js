@@ -15,6 +15,12 @@ slider.oninput = function () {
   zoom = this.value;
 }
 
+function v3(x, y, z) {
+  this.x = x;
+  this.y = y;
+  this.z = z;
+}
+
 const tileWidth = 64;
 const tileHeight = 32;
 const tileAmount = 19;
@@ -27,18 +33,32 @@ const fps = 30;
 let xZero;
 let yZero;
 
+// each step in elevation is 8px steps
+
 let grid = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 5, 0, 0, 0, 0, 5, 0, 0, 0],
+  [8, 15, 8, 8, 8, 8, 4, 0, 0, 0],
+  [0, 5, 0, 0, 0, 0, 0, 0, 0, 0],
+  [8, 15, 0, 0, 0, 0, 0, 0, 0, 12],
+  [0, 0, 0, 0, 0, 0, 0, 0, 12, 15],
+  [0, 0, 0, 0, 0, 0, 0, 12, 15, 4],
+  [0, 0, 0, 0, 0, 0, 12, 15, 4, 0],
+  [0, 0, 0, 0, 0, 12, 15, 4, 0, 0],
+  [0, 0, 0, 0, 12, 15, 4, 0, 0, 0],
+  [0, 0, 0, 12, 15, 4, 0, 0, 0, 0],
 ];
+
+let depthMap = [
+  [4, 3, 3, 3, 3, 3, 2, 2, 2, 2],
+  [3, 3, 2, 2, 2, 2, 2, 2, 2, 2],
+  [3, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+  [2, 2, 2, 2, 2, 2, 2, 2, 1, 1],
+  [2, 2, 2, 2, 2, 2, 2, 1, 1, 0],
+  [2, 2, 2, 2, 2, 2, 1, 1, 0, 0],
+  [2, 2, 2, 2, 2, 1, 1, 0, 0, 0],
+  [2, 2, 2, 2, 1, 1, 0, 0, 0, 0],
+  [2, 2, 2, 1, 1, 0, 0, 0, 0, 0],]
 
 setup();
 setInterval(update, 1000 / fps);
@@ -101,9 +121,17 @@ function drawGrid(grid) {
   }
 }
 
+function tileMap() {
+  for (var y = 0; y < gridSize; y++) {
+    for (var x = 0; x < gridSize; x++) {
+
+    }
+  }
+}
+
 function drawTile(tile, x, y) {
   let xScreen = xZero + ((x - y) * tileWidth) / 2;
-  let yScreen = yZero + ((x + y) * tileHeight) / 2;
+  let yScreen = yZero + ((x + y) * tileHeight) / 2 - (8 * depthMap[y][x]);
   drawImage(tileImages[tile], xScreen, yScreen);
 }
 
